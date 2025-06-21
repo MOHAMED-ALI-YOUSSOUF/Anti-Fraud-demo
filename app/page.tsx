@@ -2,7 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import CallsTable from '../components/CallsTable';
-import CallsMap from '../components/CallsMap';
+import dynamic from 'next/dynamic';
+const CallsMap = dynamic(() => import('../components/CallsMap'), {
+  ssr: false,
+  loading: () => <p>Chargement de la carte...</p>,
+});
+
 import CallsChart from '../components/CallsChart';
 
 interface SuspiciousCall {
